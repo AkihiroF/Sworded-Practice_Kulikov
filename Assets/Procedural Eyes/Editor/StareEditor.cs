@@ -5,7 +5,7 @@ using System;
 
 [CustomEditor(typeof(PupilLook), true)]
 [CanEditMultipleObjects]
-public class PupilLookEditor : Editor {
+public class PupilLookEditor : UnityEditor.Editor {
 
 	SerializedProperty useLids;
 	SerializedProperty flat;
