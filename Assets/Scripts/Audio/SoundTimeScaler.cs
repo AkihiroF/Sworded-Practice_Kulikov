@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SoundTimeScaler : MonoBehaviour
+namespace Scripts.Audio
 {
-    AudioSource audio;
-    float scale;
+    public class SoundTimeScaler : MonoBehaviour
+    {
+        AudioSource audio;
+        float scale;
         void Start()
-    {
-        audio = GetComponent<AudioSource>();
-        scale = audio.pitch;
-    }
+        {
+            audio = GetComponent<AudioSource>();
+            scale = audio.pitch;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        audio.pitch = scale * Time.timeScale;
+        // Update is called once per frame
+        void Update()
+        {
+            audio.pitch = scale * Time.timeScale;
+        }
     }
 }

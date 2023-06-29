@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Code.Scripts.Enemy
+namespace Scripts.Enemy
 {
     public class EnemyPool
     {

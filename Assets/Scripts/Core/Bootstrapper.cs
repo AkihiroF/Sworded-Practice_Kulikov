@@ -1,9 +1,8 @@
 using Code.Events;
-using deVoid.Utils;
+using Scripts.Services;
 using UnityEngine;
-using Zenject;
 
-namespace Code.Scripts.Core
+namespace Scripts.Core
 {
     public class Bootstrapper : MonoBehaviour
     {

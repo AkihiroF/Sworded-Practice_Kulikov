@@ -1,8 +1,8 @@
 using Code.Events;
-using deVoid.Utils;
+using Scripts.Services;
 using UnityEngine;
 
-namespace Code.Scripts.Core
+namespace Scripts.Core
 {
     public class Game
     {

@@ -1,11 +1,10 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Code.Scripts.Enemy
+namespace Scripts.Enemy
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(NavMeshAgent))]

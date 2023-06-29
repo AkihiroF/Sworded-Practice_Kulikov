@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DamagableProp : MonoBehaviour
+namespace Scripts.Health
 {
-    public GameObject HitFX;
-    public PlayerStats playerStats;
-
-    private void OnCollisionEnter(Collision collision)
+    public class DamagableProp : MonoBehaviour
     {
-        if (collision.gameObject.tag == "Sword")
+        public GameObject HitFX;
+        public PlayerStats playerStats;
+
+        private void OnCollisionEnter(Collision collision)
         {
-            float magn = collision.relativeVelocity.magnitude;
-            if (magn > 10)
+            if (collision.gameObject.CompareTag("Sword"))
             {
-                if (magn > 20) Instantiate(HitFX, collision.contacts[0].point + Vector3.up * 0.5f, Quaternion.identity);
-                playerStats.lastHit = collision.transform.parent.GetComponent<PlayerIndex>().index;
-                playerStats.AddHP(-(int)magn);
+                float magn = collision.relativeVelocity.magnitude;
+                if (magn > 10)
+                {
+                    if (magn > 20) Instantiate(HitFX, collision.contacts[0].point + Vector3.up * 0.5f, Quaternion.identity);
+                    playerStats.lastHit = collision.transform.parent.GetComponent<PlayerIndex>().index;
+                    playerStats.AddHP(-(int)magn);
+                }
             }
         }
     }

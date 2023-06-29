@@ -1,21 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class VibroSounder : MonoBehaviour
+namespace Scripts.Audio
 {
-    AudioSource audioSource;
-    void Start()
+    public class VibroSounder : MonoBehaviour
     {
-        audioSource = GetComponent<AudioSource>();
-    }
+        AudioSource audioSource;
+        void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
-    public void Interface(AudioClip audio)
-    {
-        audioSource.PlayOneShot(audio);
-    }
-    public void Soft(AudioClip audio)
-    {
-        audioSource.PlayOneShot(audio);
+        public void Interface(AudioClip audio)
+        {
+            audioSource.PlayOneShot(audio);
+        }
+        public void Soft(AudioClip audio)
+        {
+            audioSource.PlayOneShot(audio);
+        }
     }
 }

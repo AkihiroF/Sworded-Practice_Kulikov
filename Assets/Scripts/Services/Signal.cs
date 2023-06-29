@@ -28,7 +28,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace deVoid.Utils
+namespace Scripts.Services
 {
     /// <summary>
     /// Base interface for Signals

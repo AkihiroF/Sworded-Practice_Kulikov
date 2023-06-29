@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scripts.Audio;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour

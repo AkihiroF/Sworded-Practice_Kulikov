@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using Code.Events;
-using deVoid.Utils;
 using DG.Tweening;
+using Scripts.Enemy;
+using Scripts.Services;
 using UnityEngine;
 using Zenject;
 

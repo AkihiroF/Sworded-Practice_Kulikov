@@ -2358,6 +2358,7 @@ GameObject:
   - component: {fileID: 2188966572416266734}
   - component: {fileID: -7267245501612385388}
   - component: {fileID: 5944452478447873442}
+  - component: {fileID: 2699828710391286079}
   m_Layer: 0
   m_Name: Bot (1)
   m_TagString: Unit
@@ -2695,16 +2696,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b969b4360e4313a129872114eadb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3645989267974472762}
-  canmove: 0
-  BigHitFX: {fileID: 8524746903265313620, guid: 2ce61c07363948c4d9f0610de75b78e0,
-    type: 3}
-  HitFX: {fileID: 7830873403322662040, guid: 61889f9d9c41c8b4f8a7c659a7f2e682, type: 3}
-  BotHitFX: {fileID: 2486549483553271303, guid: 6abd15b62cf556743b1f226be2026fe5,
-    type: 3}
   playerStats: {fileID: 4724672136627759361}
+  feedback: {fileID: 2699828710391286079}
+--- !u!114 &2699828710391286079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645989269363698634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b032b255e374cf0a014112573d175f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 3645989267974472762}
+  bigHitFX: {fileID: 8524746903265313620, guid: 2ce61c07363948c4d9f0610de75b78e0,
+    type: 3}
+  hitFX: {fileID: 7830873403322662040, guid: 61889f9d9c41c8b4f8a7c659a7f2e682, type: 3}
+  botHitFX: {fileID: 2486549483553271303, guid: 6abd15b62cf556743b1f226be2026fe5,
+    type: 3}
   rb: {fileID: 3645989269363698633}
-  speed: 2
+  speed: 1
 --- !u!1 &3645989269601501075
 GameObject:
   m_ObjectHideFlags: 0

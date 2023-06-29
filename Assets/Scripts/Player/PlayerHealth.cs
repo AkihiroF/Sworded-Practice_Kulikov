@@ -1,6 +1,7 @@
 using Code.Events;
 using Code.Scripts.Enemy;
-using deVoid.Utils;
+using Scripts.Enemy;
+using Scripts.Services;
 
 namespace Code.Scripts.Player
 {

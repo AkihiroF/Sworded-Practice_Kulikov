@@ -1,18 +1,19 @@
+using Code.Scripts.Enemy;
+using Scripts.Enemy;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Scripts.Enemy
+namespace Scripts.Core
 {
     public class EnemySpawnInstaller : MonoInstaller
     {
         [SerializeField] private PlayerIndex player;
-        //[Inject] private EnemyPool enemyPool;
         public override void InstallBindings()
         {
-            //Container.BindFactory<EnemyMovement,>().FromComponentInNewPrefab(player);
+            Container.Bind<EnemyPool>().AsTransient().NonLazy();
+            Container.Bind<EnemySpawner>().AsSingle();
             Container.Bind<PlayerIndex>().FromInstance(player).AsSingle();
             Container.BindFactory<EnemyMovement, EnemyMovement.Factory>();
-            //Container.Bind<EnemyMovement>().AsSingle();
         }
     }
 }
