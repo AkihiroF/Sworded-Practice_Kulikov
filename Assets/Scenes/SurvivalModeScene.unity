@@ -1815,6 +1815,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 4808371}
+  gameUI: {fileID: 974414963}
+  camera: {fileID: 519420031}
+  holderStats: {fileID: 882916801}
 --- !u!114 &156691583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9244,6 +9247,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79999995, y: 1.8584365, z: 0.80000025}
   m_Center: {x: 0, y: 0.9842712, z: -0.000000029802322}
+--- !u!111 &899689523 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 851283615331266160, guid: d2328ceec6e093a44886fd03e64b082d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4395788862975340787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &908629518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9312,6 +9321,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64449714533301578, guid: 66ac5222446f95541a6cdc387731f585, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66ac5222446f95541a6cdc387731f585, type: 3}
+--- !u!111 &908911275 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 3050094102432869911, guid: d2328ceec6e093a44886fd03e64b082d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4395788862975340787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &909335266
 GameObject:
   m_ObjectHideFlags: 0
@@ -16888,6 +16903,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1705032167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1707759839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5452885203183460190, guid: d2328ceec6e093a44886fd03e64b082d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4395788862975340787}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb95c5c34a573cd4190606fd64de15f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1721275276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17281,6 +17308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 146596855}
   feedback: {fileID: 1764554051}
+  personUIComponent: {fileID: 1764554052}
+  maxHp: 0
 --- !u!114 &1764554050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17295,6 +17324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostManager: {fileID: 1442372464}
   playerStats: {fileID: 146596855}
+  personFeedback: {fileID: 1764554051}
   boostLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -17320,10 +17350,44 @@ MonoBehaviour:
   bigHitFX: {fileID: 8524746903265313620, guid: 2ce61c07363948c4d9f0610de75b78e0,
     type: 3}
   hitFX: {fileID: 7830873403322662040, guid: 61889f9d9c41c8b4f8a7c659a7f2e682, type: 3}
+  smokeFX: {fileID: 3402960655660201223, guid: e91d8a9a255450e498848011be7bf13b, type: 3}
   botHitFX: {fileID: 2486549483553271303, guid: 6abd15b62cf556743b1f226be2026fe5,
     type: 3}
   rb: {fileID: 1764554037}
   speed: 1
+  animator: {fileID: 1973445716}
+  DamageAnim: {fileID: 1922458174}
+  CoinAnim: {fileID: 899689523}
+  healtyLineAnim: {fileID: 908911275}
+  sounder: {fileID: 1707759839}
+--- !u!114 &1764554052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764554027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d131a28b86249219fd1ccc8ad62a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botface: 0
+  DamageText: {fileID: 0}
+  XPText: {fileID: 0}
+  XPFX: {fileID: 0}
+  Crown: {fileID: 0}
+  NewLevel: {fileID: 0}
+  DamageVignette: {fileID: 0}
+  UIobj: {fileID: 0}
+  LevelLine: {fileID: 0}
+  LevelText: {fileID: 0}
+  nameText: {fileID: 0}
+  Name: 
+  healtyText: {fileID: 0}
+  healtyLine: {fileID: 0}
+  damageLine: {fileID: 0}
+  UI_Element: {fileID: 0}
 --- !u!1001 &1779897731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18330,6 +18394,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1123f53a3cb14044ab2b9b89588af35d, type: 3}
+--- !u!111 &1922458174 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 4975796865697867090, guid: d2328ceec6e093a44886fd03e64b082d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4395788862975340787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1928301693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18568,6 +18638,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959803246}
   m_CullTransparentMesh: 0
+--- !u!95 &1973445716 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6864243007789925448, guid: d2328ceec6e093a44886fd03e64b082d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4395788862975340787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1996814241
 GameObject:
   m_ObjectHideFlags: 0
