@@ -1,4 +1,7 @@
+using DG.Tweening;
+using Scripts.Audio;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Scripts.Feedback
 {
@@ -7,9 +10,16 @@ namespace Scripts.Feedback
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private HitColor bigHitFX;
         [SerializeField] private HitColor hitFX;
+        [SerializeField] private Transform smokeFX;
         [SerializeField] private GameObject botHitFX;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speed = 1;
+        
+        public Animator animator;
+        public Animation DamageAnim;
+        public Animation CoinAnim;
+        public Animation healtyLineAnim;
+        public DamageSounder sounder;
 
         public void FeedbackFromUnit(Vector3 direction)
         {
@@ -45,6 +55,47 @@ namespace Scripts.Feedback
                     }
                 }
             }
+        }
+
+        public void FeedbackHealth()
+        {
+            healtyLineAnim.Play();
+        }
+
+        public void FeedbackAddHp(bool isBot = false)
+        {
+            if (!isBot)
+            {
+                animator.SetTrigger("Hit");
+                sounder.PlayOuch();
+            }
+            DamageAnim.Play();
+        }
+
+        public void FeedbackDeath()
+        {
+            Instantiate(smokeFX, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        }
+
+        public void FeedbackCoin()
+        {
+            CoinAnim.gameObject.SetActive(true);
+            CoinAnim.Play();
+        }
+
+        public void TimeShift()
+        {
+            var time = 1f;
+            DOTween.To(() => time, x => time = x, 0.5f, 0.5f).OnUpdate(() =>
+            {
+                Time.timeScale = time;
+            }).OnComplete(() =>
+            {
+                DOTween.To(() => time, x => time = x, 1, 0.05f).OnUpdate(() =>
+                {
+                    Time.timeScale = time;
+                });
+            });
         }
     }
 }

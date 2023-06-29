@@ -209,15 +209,6 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-
-    public void GoodDeath()
-    {
-        Player.gameObject.SetActive(false);
-        UIobj.SetActive(false);
-        HP = MaxHP;
-        AddHP(0);
-        Instantiate(SmokeFX, Player.position + Vector3.up * 0.5f, Quaternion.identity);
-    }
     public void AddPoints(int points)
     {
         Points += points;

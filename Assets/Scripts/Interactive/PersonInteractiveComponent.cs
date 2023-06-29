@@ -1,3 +1,4 @@
+using Scripts.Feedback;
 using Scripts.Services;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Scripts.Interactive
     {
         [SerializeField] private BoostManager boostManager;
         [SerializeField] private PlayerStats playerStats;
+        [SerializeField] private PersonFeedback personFeedback;
         [SerializeField]  private LayerMask boostLayer;
         [SerializeField]  private LayerMask pointLayer;
         [SerializeField]  private LayerMask coinLayer;
@@ -31,8 +33,7 @@ namespace Scripts.Interactive
                 if (!playerStats.botface)
                 {
                     PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + 5);
-                    playerStats.CoinAnim.gameObject.SetActive(true);
-                    playerStats.CoinAnim.Play();
+                    personFeedback.FeedbackCoin();
                 }
             }
         }
