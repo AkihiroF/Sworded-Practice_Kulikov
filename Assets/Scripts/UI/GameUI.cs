@@ -201,7 +201,7 @@ public class GameUI : MonoBehaviour
         Whistle.SetActive(true);
         for (int i = 0; i < Stats.Count; i++)
         {
-            Stats[i].movement.canmove = true;
+            //Stats[i].movement.canmove = true;
         }
     }
 
@@ -270,10 +270,10 @@ public class GameUI : MonoBehaviour
         Whistle.SetActive(true);
         for (int i = 0; i < Stats.Count; i++)
         {
-            Stats[i].movement.canmove = false;
+            //Stats[i].movement.canmove = false;
         }
 
-        if (PlayerStat.movement.gameObject.activeSelf) win = true;
+        //if (PlayerStat.movement.gameObject.activeSelf) win = true;
         Invoke("Finish", 2);
     }
     void Awake()

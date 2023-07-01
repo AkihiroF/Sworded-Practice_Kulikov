@@ -13,7 +13,10 @@ namespace Scripts.Enemy
         [SerializeField] private int maxHp;
 
         [Inject] private EnemyPool pool;
+        [Inject] protected GameUI GameUI;
+        [Inject] private BalanceSheet balance;
         private float _currentHp;
+        private int _lastHit;
 
         private void Start()
         {
@@ -30,36 +33,32 @@ namespace Scripts.Enemy
         {
             float magn = collision.relativeVelocity.magnitude;
             feedback.FeedbackFromSword(magn,collision,true);
-            playerStats.lastHit = collision.transform.parent.GetComponent<PlayerIndex>().index;
-            CheckHp(-(int)magn);
+            _lastHit = collision.transform.parent.GetComponent<PlayerIndex>().index;
+            AddHP(-(int)magn);
         } 
         }
 
-        private void CheckHp(int damage)
+        public void UpgradeMaxHp(int Level)
         {
-            _currentHp += damage;
-            if(_currentHp > 0)playerStats.AddHP(damage);
-            else
-            {
-                Death();
-            }
+            maxHp = (int)(100 * Mathf.Pow((float)Level, balance.HPcoeff));
+            _currentHp = maxHp;
+            AddHP(0);
         }
-        
+
         public void AddHP(int damage)
             {
-                // if(hp<0) DamageVignette.SetActive(true);
-                // if (gameUI.Stats.Count > 1)
-                // {
-                //     
-                //     PlayerStats playerStats = gameUI.Stats[lastHit];
-                //     hp = (int)(hp * playerStats.MaxHP* playerStats.Damage * playerStats.damagemod / 100);
-                //     if (hp < 0 && playerStats.vampire)
-                //     {
-                //
-                //         gameUI.Stats[lastHit].AddHP(-hp/4);
-                //         
-                //     }
-                // }
+                if (GameUI.Stats.Count > 1)
+                {
+                    
+                    PlayerStats playerStats = GameUI.Stats[_lastHit];
+                    damage = (int)(damage * maxHp* playerStats.Damage * playerStats.damagemod / 100);
+                    if (damage < 0 && playerStats.vampire)
+                    {
+                
+                        GameUI.Stats[_lastHit].AddHP(-damage/4);
+                        
+                    }
+                }
                 _currentHp -= damage;
                 if (damage != 0)
                 {
@@ -76,6 +75,7 @@ namespace Scripts.Enemy
                     }
                 }
                 _currentHp = Mathf.Clamp(_currentHp, 0, maxHp);
+                feedback.FeedbackAddHp(!playerStats.botface);
                 personUIComponent.UpdateAddHp(damage,maxHp,_currentHp);
                 if (_currentHp<=0)
                 {
@@ -85,10 +85,24 @@ namespace Scripts.Enemy
 
         protected virtual void Death()
         {
-            pool.AddEnemy(this.gameObject);
+            GameObject o;
+            (o = this.gameObject).SetActive(false);
+            pool.AddEnemy(o);
             personUIComponent.OnDeath();
             feedback.FeedbackDeath();
+            _currentHp = maxHp;
+            
+            
+            if (_lastHit == 0)
+            {
+                GameUI.AddKill();
+            }
+            playerStats.GiveXp(_lastHit);
+            AddHP(0);
+            if (GameUI.mode != 0) GameUI.MinusAlive();
         }
-        
+        public class Factory : PlaceholderFactory<EnemyHealth>
+        {
+        }
     }
 }

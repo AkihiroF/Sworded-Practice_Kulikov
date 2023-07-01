@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enemy;
 using UnityEngine;
 
 public class Lightning : MonoBehaviour
@@ -15,9 +16,9 @@ public class Lightning : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag=="Unit"&& other.transform!=transform.parent)
+        if (other.gameObject.CompareTag("Unit")&& other.transform!=transform.parent)
         {
-            other.GetComponent<BotMovement>().playerStats.AddHP(-25);
+            other.GetComponent<EnemyHealth>().AddHP(-25);
             Instantiate(Fx, other.transform.position, Quaternion.identity);
             if (!audio.isPlaying) audio.Play();
         }

@@ -1831,6 +1831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1309934819}
+  balance: {fileID: 0}
 --- !u!114 &156691584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17372,18 +17373,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d131a28b86249219fd1ccc8ad62a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botface: 0
   DamageText: {fileID: 0}
   XPText: {fileID: 0}
   XPFX: {fileID: 0}
-  Crown: {fileID: 0}
   NewLevel: {fileID: 0}
-  DamageVignette: {fileID: 0}
   UIobj: {fileID: 0}
   LevelLine: {fileID: 0}
   LevelText: {fileID: 0}
   nameText: {fileID: 0}
-  Name: 
   healtyText: {fileID: 0}
   healtyLine: {fileID: 0}
   damageLine: {fileID: 0}
@@ -23865,9 +23862,19 @@ PrefabInstance:
       objectReference: {fileID: 974414963}
     - target: {fileID: 5944452478447873442, guid: 3b80fb953a48a814998421c0cbaadfc7,
         type: 3}
+      propertyPath: maxHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944452478447873442, guid: 3b80fb953a48a814998421c0cbaadfc7,
+        type: 3}
       propertyPath: canmove
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5944452478447873442, guid: 3b80fb953a48a814998421c0cbaadfc7,
+        type: 3}
+      propertyPath: personUIComponent
+      value: 
+      objectReference: {fileID: 1764554052}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b80fb953a48a814998421c0cbaadfc7, type: 3}
 --- !u!1 &3645989270027673903 stripped

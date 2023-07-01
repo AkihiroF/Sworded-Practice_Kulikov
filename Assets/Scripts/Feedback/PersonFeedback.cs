@@ -83,6 +83,16 @@ namespace Scripts.Feedback
             CoinAnim.Play();
         }
 
+        public void FeedbackAddPoint()
+        {
+            animator.SetTrigger("Point");
+        }
+
+        public void FeedbackAddLevel()
+        {
+            animator.SetTrigger("Level");
+        }
+
         public void TimeShift()
         {
             var time = 1f;

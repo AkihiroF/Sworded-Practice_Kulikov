@@ -6,18 +6,14 @@ namespace Scripts.UI
 {
     public class PersonUIComponent : MonoBehaviour
     {
-        [SerializeField] private bool botface;
         [SerializeField] private Text DamageText;
         [SerializeField] private Text XPText;
         [SerializeField] private GameObject XPFX;
-        [SerializeField] private GameObject Crown;
         [SerializeField] private GameObject NewLevel;
-        [SerializeField] private GameObject DamageVignette;
         [SerializeField] private GameObject UIobj;
         [SerializeField] private Image LevelLine;
         [SerializeField] private Text LevelText;
         [SerializeField] private Text nameText;
-        [SerializeField] private string Name;
         [SerializeField] private Text healtyText;
         [SerializeField] private Transform healtyLine;
         [SerializeField] private Transform damageLine;
@@ -26,16 +22,19 @@ namespace Scripts.UI
         [Inject]private Camera Cam;
         [Inject]private GameUI gameUI;
         [Inject]private PlayerIndex player;
+        private bool _isBot;
         float startsize;
         
         private void Start()
         {
-            if (!botface) nameText.text = "Player" + Random.Range(1000, 10000);
-            if (!botface) nameText.text = PlayerPrefs.GetString("Name");
-            Name = nameText.text;
-            UI_Element = GetComponent<RectTransform>();
             transform.parent = HolderStats;
             startsize = Cam.fieldOfView;
+        }
+
+        public void UpdateStats(string name, bool isBot)
+        {
+            nameText.text = name;
+            _isBot = isBot;
         }
         
         private void Update()
@@ -68,9 +67,30 @@ namespace Scripts.UI
                 healtyLine.localScale = Vector3.up + Vector3.right * (hp / maxHp);
             }
         }
-        
-        
 
+        public void UpdateAddPoint(int addedPoints,float endFill, int level)
+        {
+            if (addedPoints > 0)
+            {
+                if (!_isBot)
+                {
+                    XPText.text = "+" + addedPoints + "xp";
+                    XPText.GetComponent<Animation>().Stop();
+                    XPText.GetComponent<Animation>().Play();
+                }
+                XPFX.SetActive(true);
+                NewLevel.SetActive(true);
+                NewLevel.transform.localScale = Vector3.one;
+            }
+            LevelLine.fillAmount = endFill;
+            LevelText.text = (level).ToString();
+        }
+
+        public void UpdateLevel()
+        {
+            NewLevel.transform.localScale = Vector3.one*1.5f;
+            LevelLine.fillAmount = 0;
+        }
         public void OnDeath()
         {
             UIobj.SetActive(false);
