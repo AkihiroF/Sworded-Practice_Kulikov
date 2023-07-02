@@ -1,4 +1,4 @@
-using Code.Scripts.Player;
+using Scripts.Player;
 using Scripts.UI;
 using UnityEngine;
 using UnityEngine.Serialization;

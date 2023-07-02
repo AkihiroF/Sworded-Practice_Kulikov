@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scripts.BaseComponents;
 using Scripts.Player;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class WeaponAssign : MonoBehaviour
     public GameObject[] Weapon;
     public Transform[] Hand;
     public Transform[] Dagger;
-    public BotMovement movement;
+    public BaseMovement movement;
     public PlayerStats playerStats;
     
     public BalanceSheet balance;
@@ -20,7 +21,7 @@ public class WeaponAssign : MonoBehaviour
         if (bot&&PlayerPrefs.GetInt("Internet") == 0)
         {
             playerStats.Damage *= 1.5f;
-            movement.speed *= 1.2f;
+            movement.Speed *= 1.2f;
         }
         int weapon=0;
         if (bot)
@@ -50,7 +51,7 @@ public class WeaponAssign : MonoBehaviour
         }
         else weapon = PlayerPrefs.GetInt("CWeapon");
         if (test < 100) weapon = test;
-        movement.rotspeed *= balance.weapon[weapon].speed;
+        movement.SpeedRotation *= balance.weapon[weapon].speed;
         playerStats.Damage *= balance.weapon[weapon].damage;
         movement.Sword = Weapon[weapon].transform;
         if (weapon!=2)

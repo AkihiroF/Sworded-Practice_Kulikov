@@ -95,5 +95,8 @@ namespace Scripts.UI
         {
             UIobj.SetActive(false);
         }
+        public class Factory : PlaceholderFactory<PersonUIComponent>
+        {
+        }
     }
 }

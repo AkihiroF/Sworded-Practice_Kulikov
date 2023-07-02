@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Scripts.Audio;
+﻿using Scripts.Audio;
+using Scripts.BaseComponents;
 using Scripts.Player;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
     public int skill;
-    public BotMovement movement;
+    public BaseMovement movement;
+    [SerializeField] private BaseHealth health;
     public PlayerStats PlayerStats;
     public MeleeWeaponTrail[] Trail;
     public GameObject[] SkillFire;
@@ -69,11 +69,11 @@ public class SkillManager : MonoBehaviour
         {
             case 0:
                 {
-                    if (movement.damagable&& movement.rb.velocity!=Vector3.zero)
+                    if (health.Damagable&& movement.rb.velocity!=Vector3.zero)
                     {
-                        if (movement.rotspeedmod < 3f)
+                        if (movement.SpeedRotation < 3f)
                         {
-                            movement.rotspeedmod += Time.fixedDeltaTime * 1.2f;
+                            movement.SpeedRotation += Time.fixedDeltaTime * 1.2f;
                             movement.speedmod += Time.fixedDeltaTime * 0.1f;
                             if (movement.rotspeedmod > 3f)
                             {

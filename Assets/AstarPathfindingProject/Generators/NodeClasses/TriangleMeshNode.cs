@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pathfinding.Serialization;
+using Third_Party.AstarPathfindingProject.Core.Serialization;
 
 namespace Pathfinding {
 	/// <summary>Interface for something that holds a triangle based navmesh</summary>

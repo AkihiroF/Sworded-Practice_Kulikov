@@ -1,3 +1,4 @@
+using Scripts.BaseComponents;
 using Scripts.Feedback;
 using Scripts.UI;
 using UnityEngine;
@@ -5,17 +6,14 @@ using Zenject;
 
 namespace Scripts.Enemy
 {
-    public class EnemyHealth : MonoBehaviour
+    public class EnemyHealth : BaseHealth
     {
-        [SerializeField] private PlayerStats playerStats;
         [SerializeField] private PersonFeedback feedback;
         [SerializeField] private PersonUIComponent personUIComponent;
-        [SerializeField] private int maxHp;
 
         [Inject] private EnemyPool pool;
         [Inject] protected GameUI GameUI;
         [Inject] private BalanceSheet balance;
-        private float _currentHp;
         private int _lastHit;
 
         private void Start()

@@ -1,6 +1,8 @@
 using Code.Scripts.Enemy;
 using Scripts.Enemy;
+using Scripts.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Scripts.Core
@@ -17,6 +19,7 @@ namespace Scripts.Core
             Container.Bind<PlayerIndex>().FromInstance(player).AsSingle();
             Container.BindFactory<EnemyMovement, EnemyMovement.Factory>();
             Container.BindFactory<EnemyHealth, EnemyHealth.Factory>();
+            Container.BindFactory<PersonUIComponent, PersonUIComponent.Factory>();
         }
     }
 }

@@ -1,7 +1,6 @@
 using DG.Tweening;
 using Scripts.Audio;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Scripts.Feedback
 {
@@ -15,11 +14,11 @@ namespace Scripts.Feedback
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speed = 1;
         
-        public Animator animator;
-        public Animation DamageAnim;
-        public Animation CoinAnim;
-        public Animation healtyLineAnim;
-        public DamageSounder sounder;
+        [SerializeField] private Animator animator;
+        [SerializeField] private Animation damageAnim;
+        [SerializeField] private Animation coinAnim;
+        [SerializeField] private Animation healthyLineAnim;
+        [SerializeField] private DamageSounder sounder;
 
         public void FeedbackFromUnit(Vector3 direction)
         {
@@ -59,7 +58,7 @@ namespace Scripts.Feedback
 
         public void FeedbackHealth()
         {
-            healtyLineAnim.Play();
+            healthyLineAnim.Play();
         }
 
         public void FeedbackAddHp(bool isBot = false)
@@ -69,7 +68,7 @@ namespace Scripts.Feedback
                 animator.SetTrigger("Hit");
                 sounder.PlayOuch();
             }
-            DamageAnim.Play();
+            damageAnim.Play();
         }
 
         public void FeedbackDeath()
@@ -79,8 +78,8 @@ namespace Scripts.Feedback
 
         public void FeedbackCoin()
         {
-            CoinAnim.gameObject.SetActive(true);
-            CoinAnim.Play();
+            coinAnim.gameObject.SetActive(true);
+            coinAnim.Play();
         }
 
         public void FeedbackAddPoint()

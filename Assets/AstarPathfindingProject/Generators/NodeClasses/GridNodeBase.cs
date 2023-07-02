@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pathfinding.Serialization;
+using Third_Party.AstarPathfindingProject.Core.Serialization;
 
 namespace Pathfinding {
 	/// <summary>Base class for GridNode and LevelGridNode</summary>

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Scripts.BaseComponents;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -8,11 +9,9 @@ namespace Scripts.Enemy
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : BaseMovement
     {
         [Inject] private PlayerIndex playerObj;
-        [SerializeField] private float speedMovement;
-        [SerializeField] private float speedRotation;
         private NavMeshAgent _agent;
         private Rigidbody _rigidbody;
         private bool _isRotateRight = true;

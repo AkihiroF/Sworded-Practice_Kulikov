@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Scripts.Player;
+﻿using Scripts.BaseComponents;
 using UnityEngine;
 
-public class SwordCollision : MonoBehaviour
+namespace Scripts.Player
 {
-    public GameObject HitFX;
-    public BotMovement bm;
-    public GameObject fx;
-    private void OnCollisionEnter(Collision collision)
+    public class SwordCollision : MonoBehaviour
     {
-        if (collision.gameObject.tag == "Sword")
+        public GameObject HitFX;
+        public BaseHealth bm;
+        public GameObject fx;
+        private void OnCollisionEnter(Collision collision)
         {
-            if (!bm.bot) bm.Defense();
+            if (collision.gameObject.CompareTag("Sword"))
+            {
+                if (!bm.IsBot) bm.Defense();
 
-            //Invoke("SetTag", 1.5f);
-            float magn = collision.relativeVelocity.magnitude;
+                //Invoke("SetTag", 1.5f);
+                float magn = collision.relativeVelocity.magnitude;
 
-            if (magn > 20) Instantiate(HitFX, collision.contacts[0].point + Vector3.up * 0.5f, Quaternion.identity);
+                if (magn > 20) Instantiate(HitFX, collision.contacts[0].point + Vector3.up * 0.5f, Quaternion.identity);
+            }
         }
     }
 }

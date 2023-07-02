@@ -1,15 +1,11 @@
-using System;
+using Scripts.BaseComponents;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Scripts.Player
+namespace Scripts.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : BaseMovement
     {
-        [SerializeField] private Transform Sword;
-        [SerializeField] private float speedMovement;
-        [SerializeField] private float speedRotation;
-        
         [Inject] private VariableJoystick joystick;
         private Rigidbody _rigidbody;
         private bool _isRotateRight = true;
@@ -21,13 +17,12 @@ namespace Code.Scripts.Player
 
         void Update()
         {
-            Sword.localEulerAngles =
-//Vector3.right * Sword.localEulerAngles.x +
-                Vector3.up * Sword.localEulerAngles.y;
-            Sword.localPosition =
-                Vector3.right * Sword.localPosition.x +
+            sword.localEulerAngles =
+                Vector3.up * sword.localEulerAngles.y;
+            sword.localPosition =
+                Vector3.right * sword.localPosition.x +
                 Vector3.up * 0 +
-                Vector3.forward * Sword.localPosition.z;
+                Vector3.forward * sword.localPosition.z;
             
             if (Input.GetMouseButtonDown(0))
             {
