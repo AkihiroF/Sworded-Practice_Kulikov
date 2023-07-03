@@ -47,7 +47,6 @@ namespace Scripts.Enemy
             {
                 if (GameUI.Stats.Count > 1)
                 {
-                    
                     PlayerStats playerStats = GameUI.Stats[_lastHit];
                     damage = (int)(damage * maxHp* playerStats.Damage * playerStats.damagemod / 100);
                     if (damage < 0 && playerStats.vampire)
@@ -57,7 +56,13 @@ namespace Scripts.Enemy
                         
                     }
                 }
-                _currentHp -= damage;
+
+                if (!Damagable)
+                {
+                    Damagable = true;
+                    return;
+                }
+                _currentHp += damage;
                 if (damage != 0)
                 {
                     feedback.FeedbackHealth();

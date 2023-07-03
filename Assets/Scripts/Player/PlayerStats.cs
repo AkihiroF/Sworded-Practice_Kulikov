@@ -44,11 +44,12 @@ public class PlayerStats : MonoBehaviour
         AddHP(0);
         AddPoints(0);
         if (player&&PlayerPrefs.GetInt("Vibro") == 0) vibro = true;
+        personUIComponent.UpdateStats(_name, botface);
     }
 
     public void AddHP(int hp)
     {
-        
+        health.AddHP(hp);
     }
     public void GiveXp(int p)
     {

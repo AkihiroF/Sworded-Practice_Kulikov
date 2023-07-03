@@ -117,6 +117,15 @@ public class Menu : MonoBehaviour
         Loading.gameObject.SetActive(true);
         Loading.Load(0);
     }
+
+    public void LoadSurvival()
+    {
+        MainMaterial.color = Color.white;
+        MainMaterial.mainTextureOffset = new Vector2(cSkin * 1f / 6, 1);
+        HandsMaterial.color = balance.skin[PlayerPrefs.GetInt("CSkin")].HandsColor;
+        Loading.gameObject.SetActive(true);
+        Loading.Load(2);
+    }
     public void ResetProgress()
     {
         PlayerPrefs.DeleteAll();

@@ -29,6 +29,7 @@ namespace Scripts.Core
 
         private void StopGame()
         {
+            Debug.Log("stopGame");
             UnSubscribe();
             Time.timeScale = 0;
         }

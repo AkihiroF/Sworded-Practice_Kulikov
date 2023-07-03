@@ -13,14 +13,13 @@ namespace Scripts.Enemy
     {
         [Inject] private PlayerIndex playerObj;
         private NavMeshAgent _agent;
-        private Rigidbody _rigidbody;
         private bool _isRotateRight = true;
 
         private Tween _timerRotation;
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            Rb = GetComponent<Rigidbody>();
             _agent = GetComponent<NavMeshAgent>();
 
             _agent.speed = speedMovement;
@@ -31,12 +30,24 @@ namespace Scripts.Enemy
         private void FixedUpdate()
         {
             _agent.SetDestination(playerObj.transform.position);
+            
+            var localEulerAngles = Sword.localEulerAngles;
+            localEulerAngles =
+                Vector3.up * localEulerAngles.y;
+            var localPosition = Sword.localPosition;
+            localPosition =
+                Vector3.right * localPosition.x +
+                Vector3.up * 0 +
+                Vector3.forward * localPosition.z;
+            Sword.localPosition = localPosition;
+            localEulerAngles = Vector3.right * localEulerAngles.x + Vector3.up * localEulerAngles.y;
+            Sword.localEulerAngles = localEulerAngles;
         }
 
         private void Rotate()
         {
-            if (_isRotateRight) _rigidbody.angularVelocity = Vector3.up * 100 * speedRotation * Time.deltaTime;
-            else _rigidbody.angularVelocity = -Vector3.up * 100 * speedRotation * Time.deltaTime;
+            if (_isRotateRight) Rb.angularVelocity = Vector3.up * 100 * speedRotation * RotationMode * Time.deltaTime;
+            else Rb.angularVelocity = -Vector3.up * 100 * speedRotation * RotationMode * Time.deltaTime;
             RotationTimer();
         }
 

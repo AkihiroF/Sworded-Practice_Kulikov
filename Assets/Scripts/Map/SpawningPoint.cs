@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawningPoint : MonoBehaviour
+namespace Scripts.Map
 {
-    public BalanceSheet balance;
-    public GameObject point;
-    public float time=5;
-    float t;
-    private void FixedUpdate()
+    public class SpawningPoint : MonoBehaviour
     {
-        if (!point.activeSelf)
+        public BalanceSheet balance;
+        public GameObject point;
+        public float time=5;
+        float t;
+        private void FixedUpdate()
         {
-            t += Time.fixedDeltaTime;
-            if (t> time)
+            if (!point.activeSelf)
             {
-                t = 0;
-                point.transform.position = Vector3.right * Random.Range(-balance.MapSize, balance.MapSize) + Vector3.forward * Random.Range(-balance.MapSize, balance.MapSize);
-                point.SetActive(true);
+                t += Time.fixedDeltaTime;
+                if (t> time)
+                {
+                    t = 0;
+                    point.transform.position = Vector3.right * Random.Range(-balance.MapSize, balance.MapSize) + Vector3.forward * Random.Range(-balance.MapSize, balance.MapSize);
+                    point.SetActive(true);
+                }
             }
         }
     }

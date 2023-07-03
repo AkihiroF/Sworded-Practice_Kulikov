@@ -8,12 +8,12 @@ namespace Scripts.BaseComponents
         [SerializeField] protected PlayerStats playerStats;
         protected float _currentHp;
 
-        protected bool isDamagable;
+        protected bool IsDamagable = true;
 
         public bool Damagable
         {
-            get => isDamagable;
-            set => isDamagable = value;
+            get => IsDamagable;
+            set => IsDamagable = value;
         }
 
         public bool IsBot
@@ -23,10 +23,10 @@ namespace Scripts.BaseComponents
         public void Defense()
         {
 
-            if (isDamagable)
+            if (IsDamagable)
             {
                 playerStats.lastHit = 0;
-                isDamagable = false;
+                IsDamagable = false;
             }
         }
     }

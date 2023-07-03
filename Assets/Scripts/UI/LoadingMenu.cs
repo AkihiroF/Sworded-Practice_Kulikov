@@ -34,6 +34,11 @@ public class LoadingMenu : MonoBehaviour
             yield return new WaitForSeconds(Random.value);
         }
 
+        if (level == 2)
+        {
+            SceneManager.LoadScene("SurvivalModeScene");
+            yield return null;
+        }
         SceneManager.LoadScene("SampleScene");
     }
     IEnumerator LoadingOffline(int level)
@@ -42,6 +47,11 @@ public class LoadingMenu : MonoBehaviour
 
         Online[1].gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
+        if (level == 2)
+        {
+            SceneManager.LoadScene("SurvivalModeScene");
+            yield return null;
+        }
         SceneManager.LoadScene("SampleScene");
     }
 }

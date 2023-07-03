@@ -1,40 +1,41 @@
 ﻿using Scripts.Audio;
 using Scripts.BaseComponents;
-using Scripts.Player;
 using UnityEngine;
 
-public class SkillManager : MonoBehaviour
+namespace Scripts.Player
 {
-    public int skill;
-    public BaseMovement movement;
-    [SerializeField] private BaseHealth health;
-    public PlayerStats PlayerStats;
-    public MeleeWeaponTrail[] Trail;
-    public GameObject[] SkillFire;
-    public GameObject Vampire;
-    public GameObject Storm;
-    public RotatingShield Shield;
-    public DamageSounder whosh;
-    public Transform[] Weapon;
-    public bool bot;
-    float t;
-    void Start()
+    public class SkillManager : MonoBehaviour
     {
-        if (bot)
+        [SerializeField] private int skill;
+        [SerializeField] private BaseMovement movement;
+        [SerializeField] private BaseHealth health;
+        [SerializeField] private PlayerStats PlayerStats;
+        [SerializeField] private MeleeWeaponTrail[] Trail;
+        [SerializeField] private GameObject[] SkillFire;
+        [SerializeField] private GameObject Vampire;
+        [SerializeField] private GameObject Storm;
+        [SerializeField] private RotatingShield Shield;
+        [SerializeField] private DamageSounder whosh;
+        [SerializeField] private Transform[] Weapon;
+        [SerializeField] private bool bot;
+        float t;
+        void Start()
         {
-            if (Random.value < (0.5 + 0.05 * PlayerPrefs.GetInt("Wins"))) skill = Random.Range(0, 3);
-            else Destroy(this);
-        }
-        else skill = PlayerPrefs.GetInt("ActiveSkill");
-        switch (skill)
-        {
-            case 3:
-                for (int i = 0; i < Weapon.Length; i++)
-                {
-                    Weapon[i].localScale=1.5f*Vector3.one;
-                }
-                break;
-            case 2:
+            if (bot)
+            {
+                if (Random.value < (0.5 + 0.05 * PlayerPrefs.GetInt("Wins"))) skill = Random.Range(0, 3);
+                else Destroy(this);
+            }
+            else skill = PlayerPrefs.GetInt("ActiveSkill");
+            switch (skill)
+            {
+                case 3:
+                    for (int i = 0; i < Weapon.Length; i++)
+                    {
+                        Weapon[i].localScale=1.5f*Vector3.one;
+                    }
+                    break;
+                case 2:
                 {
                     RotatingShield shield= Instantiate(Shield, transform.position, Quaternion.identity);
                     shield.target = transform;
@@ -45,39 +46,39 @@ public class SkillManager : MonoBehaviour
                     }
 
                 }
-                break;
-            case 4:
+                    break;
+                case 4:
                 {
                     PlayerStats.vampire = true;
                     Vampire.SetActive(true);
                 }
-                break;
-            case 5:
+                    break;
+                case 5:
                 {
                     Storm.SetActive(true);
                 }
-                break;
+                    break;
 
+            }
         }
-    }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        //Debug.Log(movement.rb.angularVelocity.y);
-        switch (skill)
+        // Update is called once per frame
+        void FixedUpdate()
         {
-            case 0:
+            //Debug.Log(movement.rb.angularVelocity.y);
+            switch (skill)
+            {
+                case 0:
                 {
-                    if (health.Damagable&& movement.rb.velocity!=Vector3.zero)
+                    if (health.Damagable&& movement.Rb.velocity!=Vector3.zero)
                     {
                         if (movement.SpeedRotation < 3f)
                         {
                             movement.SpeedRotation += Time.fixedDeltaTime * 1.2f;
-                            movement.speedmod += Time.fixedDeltaTime * 0.1f;
-                            if (movement.rotspeedmod > 3f)
+                            movement.SpeedModePerson += Time.fixedDeltaTime * 0.1f;
+                            if (movement.SpeedRotationModePerson > 3f)
                             {
-                                movement.speedmod = 1.5f;
+                                movement.SpeedModePerson = 1.5f;
                                 for (int i = 0; i < Trail.Length; i++)
                                 {
                                     Trail[i].Emit = true;
@@ -86,10 +87,10 @@ public class SkillManager : MonoBehaviour
                         }
                         else if (whosh.gameObject.activeSelf) whosh.PlayOuch();
                     }
-                    else if (movement.rotspeedmod != 1f)
+                    else if (movement.SpeedRotationModePerson != 1f)
                     {
-                        movement.rotspeedmod = 1f;
-                        movement.speedmod = 1f;
+                        movement.SpeedRotationModePerson = 1f;
+                        movement.SpeedModePerson = 1f;
                         for (int i = 0; i < Trail.Length; i++)
                         {
                             Trail[i].Emit = false;
@@ -97,9 +98,9 @@ public class SkillManager : MonoBehaviour
                     }
                     break;
                 }
-            case 1:
+                case 1:
                 {
-                    if (movement.damagable) 
+                    if (health.Damagable) 
                     {
                         if (t < 3)
                         {
@@ -127,8 +128,9 @@ public class SkillManager : MonoBehaviour
                     }
                     break;
                 }
-        }
-        //if (movement.rb.angularVelocity.y>50)
+            }
+            //if (movement.rb.angularVelocity.y>50)
 
+        }
     }
 }

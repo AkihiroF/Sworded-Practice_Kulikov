@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scripts.Map;
 using UnityEngine;
 
 public class PointSpawner : MonoBehaviour

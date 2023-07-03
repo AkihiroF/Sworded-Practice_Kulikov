@@ -7,12 +7,11 @@ namespace Scripts.Player
     public class PlayerMovement : BaseMovement
     {
         [Inject] private VariableJoystick joystick;
-        private Rigidbody _rigidbody;
         private bool _isRotateRight = true;
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            Rb = GetComponent<Rigidbody>();
         }
 
         void Update()
@@ -27,16 +26,16 @@ namespace Scripts.Player
             if (Input.GetMouseButtonDown(0))
             {
                 _isRotateRight = !_isRotateRight;
-                _rigidbody.velocity = Vector3.zero;
+                Rb.velocity = Vector3.zero;
             }
 
             if (Input.GetMouseButton(0))
             {
                 //moving = true;
-                _rigidbody.AddForce((Vector3.forward * joystick.Direction.y + Vector3.right * joystick.Direction.x) * Time.deltaTime * 100 * speedMovement);
+                Rb.AddForce((Vector3.forward * joystick.Direction.y + Vector3.right * joystick.Direction.x) * Time.deltaTime * 100 * speedMovement * SpeedMode);
                 //rb.velocity=((Vector3.forward * joystick.Direction.y + Vector3.right * joystick.Direction.x) * Time.deltaTime * 100 * speed);
-                if (_isRotateRight) _rigidbody.angularVelocity = Vector3.up * 100 * speedRotation * Time.deltaTime;
-                else _rigidbody.angularVelocity = -Vector3.up * 100 * speedRotation * Time.deltaTime;
+                if (_isRotateRight) Rb.angularVelocity = Vector3.up * 100 * speedRotation * Time.deltaTime;
+                else Rb.angularVelocity = -Vector3.up * 100 * speedRotation * RotationMode * Time.deltaTime;
             }
         }
     }

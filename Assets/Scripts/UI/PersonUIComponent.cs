@@ -17,11 +17,11 @@ namespace Scripts.UI
         [SerializeField] private Text healtyText;
         [SerializeField] private Transform healtyLine;
         [SerializeField] private Transform damageLine;
+        [SerializeField] private Transform body;
         [Inject]private RectTransform HolderStats;
         [SerializeField] private RectTransform UI_Element;
         [Inject]private Camera Cam;
         [Inject]private GameUI gameUI;
-        [Inject]private PlayerIndex player;
         private bool _isBot;
         float startsize;
         
@@ -40,7 +40,7 @@ namespace Scripts.UI
         private void Update()
         {
             XPFX.transform.rotation = Quaternion.identity;
-            Vector2 ViewportPosition = Cam.WorldToViewportPoint(player.transform.position);
+            Vector2 ViewportPosition = Cam.WorldToViewportPoint(body.position);
             Vector2 WorldObject_ScreenPosition = new Vector2(
                 ((ViewportPosition.x * HolderStats.sizeDelta.x) - (HolderStats.sizeDelta.x * 0.5f)),
                 ((ViewportPosition.y * HolderStats.sizeDelta.y) - (HolderStats.sizeDelta.y * 0.5f)));

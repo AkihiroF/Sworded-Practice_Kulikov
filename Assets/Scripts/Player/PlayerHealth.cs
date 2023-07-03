@@ -8,9 +8,9 @@ namespace Scripts.Player
     {
         protected override void Death()
         {
-            base.Death();
             GameUI.AddDeath();
             Signals.Get<OnStopGame>().Dispatch();
+            base.Death();
         }
     }
 }
