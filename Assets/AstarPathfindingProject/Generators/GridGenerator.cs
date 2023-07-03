@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Third_Party.AstarPathfindingProject.Core.Serialization;
 using Math = System.Math;
 using UnityEngine;
 #if UNITY_5_5_OR_NEWER
